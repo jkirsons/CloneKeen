@@ -168,7 +168,7 @@ int x,y,i;
 	{
 		game_SetStartPositions();
 	}
-	
+
 	// players start facing left if the start position
 	// is on the left half of the map, else right
 	// for ep1 it's always facing right (because of level08)
@@ -197,7 +197,6 @@ int x,y,i;
 			gamepdo_SelectFrame(i);
 		}
 	}
-
   
 	if (levelcontrol.bonuswarp)
 		SecretLevelWarp();
@@ -216,7 +215,7 @@ int x,y,i;
 		lprintf("> This will signal when you want the demo to fade out.\n\n");
 	}
 	else demo.fp = NULL;
-	
+
 	// draw map and initiate fade-in
   	if (!cinematic_is_playing())
 	{
@@ -226,7 +225,7 @@ int x,y,i;
 			fade(FADE_IN, FADE_NORM);
 		else
 			fade(FADE_FLASH, FADE_NORM);
-	}
+	}		
 }
 
 void SecretLevelWarp(void)

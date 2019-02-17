@@ -49,7 +49,7 @@
 const int DUTY_MAX = 0x1fff;
 bool isBackLightIntialized = false;
 const int LCD_BACKLIGHT_ON_VALUE = 1;
-int lcd_bpp = 32;
+int lcd_bpp = 8;
 
 /*
  The LCD needs a bunch of command/argument values to be initialized. They are stored in this struct.
@@ -311,13 +311,13 @@ void IRAM_ATTR send_header_cleanup(spi_device_handle_t spi)
 volatile static uint16_t *currFbPtr=NULL;
 #else
 //Warning: This gets squeezed into IRAM.
-/*static*/ uint32_t *currFbPtr=NULL;
+static uint32_t *currFbPtr=NULL;
 #endif
 SemaphoreHandle_t dispSem = NULL;
 SemaphoreHandle_t dispDoneSem = NULL;
 
 #define NO_SIM_TRANS 5 //Amount of SPI transfers to queue in parallel
-#define MEM_PER_TRANS 320*4 //in 16-bit words
+#define MEM_PER_TRANS 320*8 //in 16-bit words
 
 int16_t lcdpal[256];
 

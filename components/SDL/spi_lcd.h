@@ -9,7 +9,7 @@ void spi_lcd_send_boarder(uint16_t *scr, int boarder);
 void spi_lcd_clear();
 void spi_lcd_init();
 extern int16_t lcdpal[256];
-extern uint32_t *currFbPtr;
+//extern static uint32_t *currFbPtr;
 extern int lcd_bpp;
 
 #endif

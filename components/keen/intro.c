@@ -110,7 +110,7 @@ char ShowPressF10;
                 if (!options[OPT_ZOOM] || options[OPT_FULLSCREEN] != 1)
                 {
                    options[OPT_FULLSCREEN] = 1;
-                   options[OPT_ZOOM] = 1;
+                   options[OPT_ZOOM] = 0;
                    VidDrv_reset();
                    map_redraw();
                 }

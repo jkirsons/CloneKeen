@@ -624,8 +624,8 @@ void DefaultOptions(void)
 	lprintf("Setting default options. (First time run?)\n");
 	memset(options, 0, NUM_OPTIONS);
 	options[OPT_RENDERRATE] = 60;
-	options[OPT_ZOOM] = 1;
-	options[OPT_ZOOMONRESTART] = 1;
+	options[OPT_ZOOM] = 0;
+	options[OPT_ZOOMONRESTART] = 0;
 	options[OPT_2BUTTONFIRING] = 1;
 	options[OPT_RISEBONUS] = 1;
 	options[OPT_SHOWOSD] = 1;
@@ -663,6 +663,8 @@ char key[40];
 	
 	Ini_GetKey(NULL, "CAITLIN", key);
 	caitlin_isnt_awesome = (strcmp(key, "AWESOME") ? 1:0);
+  options[OPT_ZOOM] = 0;
+  options[OPT_ZOOMONRESTART] = 0;
 }
 
 void SaveOptions(void)

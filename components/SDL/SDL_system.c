@@ -30,7 +30,7 @@ void free2D(unsigned char ** ptr, int row, int col)
 
 void Check(const char *str)
 {
-#if 0	
+#if 1	
 	heap_caps_print_heap_info(MALLOC_CAP_SPIRAM);
 	//heap_caps_print_heap_info(MALLOC_CAP_INTERNAL);
 	printf("%s - \n", str);	

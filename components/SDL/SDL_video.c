@@ -139,7 +139,7 @@ int SDL_InitSubSystem(Uint32 flags)
 
 SDL_Surface *SDL_CreateRGBSurface(Uint32 flags, int width, int height, int depth, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask)
 {
-	Check("Create Surface");
+	//Check("Create Surface");
 printf("Surface Width: %d Height: %d Depth: %d\n", width, height, depth);
     SDL_Surface *surface = (SDL_Surface *)calloc(1, sizeof(SDL_Surface));
     SDL_Rect rect = { .x=0, .y=0, .w=width, .h=height};
@@ -259,7 +259,7 @@ SDL_Surface *SDL_GetVideoSurface(void)
 		surface->pitch = width*(depth/8);
 		surface->clip_rect = rect;
 		surface->refcount = 1;
-		surface->pixels = currFbPtr;
+		//surface->pixels = currFbPtr;
 		//heap_caps_malloc(width*height*(depth/8)/*1*/, MALLOC_CAP_SPIRAM);
 		surface->map = malloc(sizeof(SDL_BlitMap));
 		surface->map->sw_blit = SDL_SoftBlit;
@@ -307,7 +307,8 @@ int SDL_SetColors(SDL_Surface *surface, SDL_Color *colors, int firstcolor, int n
 
 SDL_Surface *SDL_SetVideoMode(int width, int height, int bpp, Uint32 flags)
 {
-	return SDL_GetVideoSurface();
+	return SDL_CreateRGBSurface(0, width, height, bpp, 0, 0, 0, 0);
+	//return SDL_GetVideoSurface();
 }
 
 void SDL_FreeSurface(SDL_Surface *surface)

@@ -1214,7 +1214,7 @@ int x,y,i,bmnum;
 	
 	// draw objects and stuff on top of the terrain
 	update_player_objects();
-	
+if(options[OPT_ZOOM]) printf("ZOOM!\n");	
 	if (!options[OPT_ZOOM])
 		Render_drawobjects(drawobject_1x);
 	else
