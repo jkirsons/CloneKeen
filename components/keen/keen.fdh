@@ -1,0 +1,13 @@
+//hash=310c0d64
+//automatically generated
+
+/* located in graphics.c */
+
+//----------------------[referenced from keen.h]---------------------//
+void drawcharacter_clear(int xoff, int yoff, int f);
+void drawcharacter_clear_inverse(int xoff, int yoff, int f);
+void drawcharacter(int xoff, int yoff, int f);
+//---------------------[referenced from macros.h]--------------------//
+void drawsprite1x_mask(int xoff, int yoff, unsigned int snum, uchar mask[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]);
+void drawsprite2x_mask(int xoff, int yoff, unsigned int snum, uchar mask[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]);
+

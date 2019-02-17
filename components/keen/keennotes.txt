@@ -1,0 +1,24 @@
+
+FindClose()
+GetDirListing
+rnd() ???
+change init_ to NextDemo or something like that
+only count yorps if the mode is on?
+
+dolist:
+
+find debug keys
+move player to ice cannon
+fix ice cannon
+TAB cheat shouldn't need enabling
+endlevel(): fade() refuses to fade out when INSTAQUIT set, had to fudge it
+union in keen.h needn't be all seperate structs
+exists should be first element in objects[] structure
+lz_decompress initilizes multiple times
+
+player uses unsigned long/signed int y??? for coordinates
+
+ice cannon priority isn't working
+
+hexadecimal converter for tray or something - key shortcut
+better nppexec and fix function list bugs

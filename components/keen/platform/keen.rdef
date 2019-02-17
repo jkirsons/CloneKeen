@@ -1,0 +1,66 @@
+
+resource app_signature "application/xvnd-Kt.CloneKeen";
+
+resource large_icon array {
+	$"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+	$"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+	$"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+	$"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+	$"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+	$"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+	$"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+	$"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+	$"ffffffff77777777777777777777ffffffff7c7cffffffffffffff7c7c7cffff"
+	$"ffffff77777777777777777777ffffffffff7c7cffffffffffff7c7c7cffffff"
+	$"ffff7777ffffffffffffffffffffffffffff7c7cffffffffff7c7c7cffffffff"
+	$"ffff7777ffffffffffffffffffffffffffff7c7cffffffff7c7c7cffffffffff"
+	$"ffff7777ffffffffffffffffffffffffffff7c7cffffff7c7c7cffffffffffff"
+	$"ffff7777ffffffffffffffffffffffffffff7c7cffff7c7c7cffffffffffffff"
+	$"ffff7777ffffffffffffffffffffffffffff7c7c7c7c7c7cffffffffffffffff"
+	$"ffff7777ffffffffffffffffffffffffffff7c7c7c7c7cffffffffffffffffff"
+	$"ffff7777ffffffffffffffffffffffffffff7c7c7c7c7cffffffffffffffffff"
+	$"ffff7777ffffffffffffffffffffffffffff7c7c7c7c7c7cffffffffffffffff"
+	$"ffff7777ffffffffffffffffffffffffffff7c7cffff7c7c7cffffffffffffff"
+	$"ffff7777ffffffffffffffffffffffffffff7c7cffffff7c7c7cffffffffffff"
+	$"ffff7777ffffffffffffffffffffffffffff7c7cffffffff7c7c7cffffffffff"
+	$"ffff7777ffffffffffffffffffffffffffff7c7cffffffffff7c7c7cffffffff"
+	$"ffff77777777777777777777777fffffffff7c7cffffffffffff7c7c7cffffff"
+	$"fffffff0777777777777777777777fffffff7c7cffffffffffffff7c7c7cffff"
+	$"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+	$"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+	$"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+	$"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+	$"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+	$"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+	$"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+	$"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+};
+
+resource mini_icon array {
+	$"ffffffffffffffffffffffffffffffff"
+	$"ffff77777777ffffff7c7cffffffff7c"
+	$"ff777777777777ffff7c7cffffff7c7c"
+	$"7777ffffffffffffff7c7cffff7c7cff"
+	$"7777ffffffffffffff7c7cff7c7cffff"
+	$"7777ffffffffffffff7c7c7c7cffffff"
+	$"7777ffffffffffffff7c7c7cffffffff"
+	$"7777ffffffffffffff7c7c7cffffffff"
+	$"7777ffffffffffffff7c7c7cffffffff"
+	$"7777ffffffffffffff7c7c7c7cffffff"
+	$"7777ffffffffffffff7c7cff7c7cffff"
+	$"7777ffffffffffffff7c7cffff7c7cff"
+	$"ff777777777777ffff7c7cffffff7c7c"
+	$"ffff77777777ffffff7c7cffffffff7c"
+	$"ffffffffffffffffffffffffffffffff"
+	$"ffffffffffffffffffffffffffffffff"
+};
+
+resource app_version {
+	major  = 8,
+	middle = 4,
+	minor  = 0,
+	
+	short_info = "CloneKeen",
+	long_info = "CloneKeen/©2003-2009 Caitlin Shaw"
+};
+

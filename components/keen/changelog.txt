@@ -1,0 +1,33 @@
+<b>Progress of Beta 8.3 <i>[Unreleased]</i></b>
+Keen will no longer walk out exit while pogo is out
+A Linux port is now working!!!
+Implemented "Press F10 for Fullscreen"
+Re-did GOD cheat to G+O+D, and no longer requires -cheat
+Tweaked desired fps from 120 to 112
+Fixed -showfps function from always reading 000
+Implemented screen zooming using scale2x
+Fixed crash when changing episode, fullscreen, or zoom under options menu.
+Fixed walking sound still playing if LEFT or RIGHT is pushed while FIRE is held down
+
+KNOWN UNSQUASHED BUGS/THINGS TO DO
+User options should be saved in a config file
+Start game in fs=0,dbl=0. In options, set fs=1,dbl=1, then dbl=0, then dbl=1. Screen gets fucked up.
+It'd be nice if you couldn't die by touching the mangling machine
+after it starts exploding.
+
+<b>Beta 8.2</b>
+Incremental update--more to come
+
+monsters can now fall off bottom of screen in ep1
+fixed die sequence when keen falls off bottom of screen in ep3
+remapped the following cheat codes:
+  changed god mode to toggleable via F1
+  changed noclip & revive to TAB
+  changed All Items to C+T+SPACE
+decreased PJUMP_PREPARE_ANIM_TIME from 15 to 11 (speeds up jump animation)
+fixed "Quit to DOS or Title" box not appearing due to deprecated LOCALE #defines
+tweaky on the player friction/inertia constants and some fixes to the pogo physics
+fixed "OOB" crash after showing end sequence in ep1
+fixed the height that tank robots fire from
+fixed ice cannon inertia problem
+included tileattr.exe in binary archive

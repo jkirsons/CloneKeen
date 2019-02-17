@@ -1,0 +1,2 @@
+alias go='cd ../bin;./keen;cd ../src'
+alias mk='cd ../src;rm keen.exe;rm ../bin/keen.exe;makegen;make;cp keen.exe ../bin'

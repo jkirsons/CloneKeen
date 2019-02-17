@@ -1,0 +1,1 @@
+type ..\..\bin\ck.log
