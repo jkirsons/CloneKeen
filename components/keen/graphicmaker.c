@@ -458,17 +458,19 @@ int i,x,y;
 // duplicates sprite source to dest
 void CopySprite(int source, int dest)
 {
-int x,y;
+	int x,y;
+
+	if(sprites[dest].imgdata)
+	{
+		free2D(sprites[dest].imgdata, sprites[dest].ysize, sprites[dest].xsize);
+		free2D(sprites[dest].maskdata, sprites[dest].ysize, sprites[dest].xsize);		
+	}
+	sprites[dest].imgdata = alloc2D(sprites[source].ysize, sprites[source].xsize);
+	sprites[dest].maskdata = alloc2D(sprites[source].ysize, sprites[source].xsize);
 
   sprites[dest].xsize = sprites[source].xsize;
   sprites[dest].ysize = sprites[source].ysize;
-
-	if(!sprites[dest].imgdata)
-	{
-		sprites[dest].imgdata = alloc2D(sprites[source].ysize, sprites[source].xsize);
-		sprites[dest].maskdata = alloc2D(sprites[source].ysize, sprites[source].xsize);
-	}
-
+	
   for(y=0;y<sprites[source].ysize;y++)
   {
     for(x=0;x<sprites[source].xsize;x++)

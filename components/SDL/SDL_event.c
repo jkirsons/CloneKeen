@@ -23,12 +23,12 @@ static const GPIOKeyMap keymap[2][6]={{
 },
 // Menu
 {
-	{CONFIG_HW_BUTTON_PIN_NUM_BUTTON1, SDL_SCANCODE_RETURN, SDLK_RETURN}, 	
-	{CONFIG_HW_BUTTON_PIN_NUM_BUTTON2, SDL_SCANCODE_ESCAPE, SDLK_ESCAPE},			
-	{CONFIG_HW_BUTTON_PIN_NUM_VOL, SDL_SCANCODE_ESCAPE, SDLK_ESCAPE},	    
+	{CONFIG_HW_BUTTON_PIN_NUM_BUTTON1, SDL_SCANCODE_LCTRL, SDLK_LCTRL},	 		
+	{CONFIG_HW_BUTTON_PIN_NUM_SELECT, SDL_SCANCODE_SPACE, SDLK_SPACE},	
+	{CONFIG_HW_BUTTON_PIN_NUM_VOL, SDL_SCANCODE_CAPSLOCK, SDLK_CAPSLOCK},		
 	{CONFIG_HW_BUTTON_PIN_NUM_MENU, SDL_SCANCODE_ESCAPE, SDLK_ESCAPE},	
-	{CONFIG_HW_BUTTON_PIN_NUM_START, SDL_SCANCODE_Y, SDLK_y},	
-	{CONFIG_HW_BUTTON_PIN_NUM_SELECT, SDL_SCANCODE_N, SDLK_n},	
+	{CONFIG_HW_BUTTON_PIN_NUM_START, SDL_SCANCODE_RETURN, SDLK_RETURN},	
+	{CONFIG_HW_BUTTON_PIN_NUM_BUTTON2, SDL_SCANCODE_LALT, SDLK_LALT},	
 }};
 #else
 static const GPIOKeyMap keymap[2][6]={{
@@ -158,7 +158,7 @@ int readOdroidXY(SDL_Event * event)
         if(checkPinStruct(i, &lastState.buttons[i], event))
         {
             // cycle weapons
-            if(keyMode == 0 && event->key.keysym.sym == SDLK_RETURN)
+/*            if(keyMode == 0 && event->key.keysym.sym == SDLK_RETURN)
             {
                 switch(weaponToggle)
                 {
@@ -188,6 +188,7 @@ int readOdroidXY(SDL_Event * event)
                         weaponToggle = 1;
                 }
             }
+*/
             return 1;
         }
 
