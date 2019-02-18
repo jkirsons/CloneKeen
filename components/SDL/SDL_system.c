@@ -9,23 +9,39 @@
 
 char new_path[1024];
 
-unsigned char ** alloc2D(int row, int col)
+unsigned char **alloc2D(int row, int col)
 {
+
 	unsigned char ** ptr = (unsigned char **) malloc(sizeof(unsigned char *)*row);
 	for(int i = 0; i < row; i++)
 	{
 		ptr[i] = (unsigned char *) malloc(sizeof(unsigned char)*col);
 	}
 	return ptr;
+
+/*
+	unsigned char* (*arr)[col] = malloc(sizeof *arr * row);
+	return arr;	
+*/	
+/*
+	unsigned char ** ptr = (unsigned char **) malloc(sizeof(unsigned char *)*row + sizeof(unsigned char)*col*row);
+	for(int i = 0; i < row; i++)
+	{
+		ptr[i] = (unsigned char *) (ptr[0] + i*sizeof(unsigned char)*col + sizeof(unsigned char *)*row);
+	}
+	return ptr;
+	*/
 }
 
 void free2D(unsigned char ** ptr, int row, int col)
 {
+	
 	for(int i = 0; i < row; i++)
 	{
 		free(ptr[i]);
 	}
 	free(ptr);
+
 }
 
 void Check(const char *str)
@@ -111,7 +127,7 @@ void SDL_InitSD(void)
 #endif
     esp_vfs_fat_sdmmc_mount_config_t mount_config = {
         .format_if_mount_failed = false,
-        .max_files = 5
+        .max_files = 15
     };
 
 	sdmmc_card_t* card;

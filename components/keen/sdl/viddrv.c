@@ -176,10 +176,13 @@ void VidDrv_flipbuffer() { SDL_Flip(screen); }
 // functions to directly set and retrieve pixels from display
 void setpixel(int x, int y, unsigned char c)
 {
+  /*
 SDL_Rect rect;
 	rect.x = x; rect.y = y;
 	rect.w = rect.h = 1;
 	SDL_FillRect(screen, &rect, c);
+  */
+  ((unsigned char *)screen->pixels)[y*screen->pitch + x] = c;
 }
 unsigned char getpixel(int x, int y)
 {

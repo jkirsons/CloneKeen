@@ -106,7 +106,7 @@ char *SDL_VideoDriverName(char *namebuf, int maxlen)
 
 SDL_Rect **SDL_ListModes(SDL_PixelFormat *format, Uint32 flags)
 {
-    SDL_Rect mode[1] = {{0,0,320,200}};
+    SDL_Rect mode[1] = {{0,0,320,240}};
     return &mode;
 }
 
@@ -325,7 +325,7 @@ void SDL_QuitSubSystem(Uint32 flags)
 
 int SDL_Flip(SDL_Surface *screen)
 {
-	spi_lcd_send_boarder(screen->pixels, 20);
+	spi_lcd_send_boarder(screen->pixels, 0);
 	//spi_lcd_send(screen->pixels);
 	return 0;
 }
