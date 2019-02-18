@@ -88,7 +88,7 @@ int x,y,startx,starty,endx,endy;
 
 // draw a sprite at 2X, using the passed mask as a transparency bitmap
 // instead of the mask that comes with the sprite
-void drawsprite2x_mask(int xoff, int yoff, unsigned int snum, uchar mask[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH])
+void drawsprite2x_mask(int xoff, int yoff, unsigned int snum, uchar **mask/*[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]*/)
 {
 int x,y,xa,ya,startx,starty,endx,endy,sprsizex,sprsizey;
 

@@ -15,7 +15,7 @@ unsigned char sb_getpixel(int x, int y);
 void drawtile(int x, int y, unsigned int t);
 void sb_drawtile(int x, int y, unsigned int t);
 void drawsprite1x_mask(int xoff, int yoff, unsigned int snum, uchar **mask/*[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]*/);
-void drawsprite2x_mask(int xoff, int yoff, unsigned int snum, uchar mask[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]);
+void drawsprite2x_mask(int xoff, int yoff, unsigned int snum, uchar **mask/*[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]*/);
 void drawsprite(int x, int y, unsigned int snum);
 void drawsprite_noclip(int xoff, int yoff, unsigned int s);
 void drawghostsprite2x(int xoff, int yoff, unsigned int snum);

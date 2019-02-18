@@ -494,6 +494,7 @@ unsigned long RawDataSize;
 		}
 	}
 	
+	free(RawData);
     return 0;
 }
 
