@@ -251,7 +251,6 @@ void DrawBitmap(int xa, int ya, int b)
 int x,y,xd,yd;
 uchar c;
 unsigned char *bmdataptr;
-
 	// for "b" arguments is passed from GetBitmapNumberFromName(),
 	// this is in case the specified name was not found
 	if (b==-1) return;

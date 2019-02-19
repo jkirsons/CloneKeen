@@ -458,8 +458,8 @@ unsigned long RawDataSize;
 				free2D(sprites[s].imgdata, sprites[s].ysize, sprites[s].xsize);
 				free2D(sprites[s].maskdata, sprites[s].ysize, sprites[s].xsize);
 			}
-			sprites[s].imgdata = alloc2D((uchar)SpriteTable[s].Height, (uchar)SpriteTable[s].Width);
-			sprites[s].maskdata = alloc2D((uchar)SpriteTable[s].Height, (uchar)SpriteTable[s].Width);
+			sprites[s].imgdata = alloc2D(SpriteTable[s].Height, SpriteTable[s].Width);
+			sprites[s].maskdata = alloc2D(SpriteTable[s].Height, SpriteTable[s].Width);
 
 			sprites[s].xsize = (uchar)SpriteTable[s].Width;
 			sprites[s].ysize = (uchar)SpriteTable[s].Height;
