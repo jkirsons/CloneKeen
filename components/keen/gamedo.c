@@ -809,7 +809,7 @@ int ya,xa,tl;
 
 
 
-uchar pmask[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH];
+uchar **pmask;//[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH];
 // check if object i is behind a priority tile, and if so, generate
 // pmask to show which pixels of the sprite should be drawn
 // returns 1 if it intersects a priority tile
@@ -818,6 +818,11 @@ char priority_checker(int i)
 int spr, xsize, ysize;
 int x, y, scanx, scany;
 int tx, ty, til;
+
+	if(pmask == NULL)
+	{
+		pmask = alloc2D(MAX_SPRITE_HEIGHT, MAX_SPRITE_WIDTH);
+	}
 
 	if (objects[i].honorPriority)
 	{
@@ -1214,7 +1219,7 @@ int x,y,i,bmnum;
 	
 	// draw objects and stuff on top of the terrain
 	update_player_objects();
-if(options[OPT_ZOOM]) printf("ZOOM!\n");	
+
 	if (!options[OPT_ZOOM])
 		Render_drawobjects(drawobject_1x);
 	else

@@ -182,7 +182,7 @@ SDL_Rect rect;
 	rect.w = rect.h = 1;
 	SDL_FillRect(screen, &rect, c);
   */
-  ((unsigned char *)screen->pixels)[y*screen->pitch + x] = c;
+  ((Uint8*)screen->pixels)[y * screen->pitch + x] = c;
 }
 unsigned char getpixel(int x, int y)
 {

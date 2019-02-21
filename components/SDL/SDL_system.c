@@ -13,9 +13,11 @@ unsigned char **alloc2D(int row, int col)
 {
 
 	unsigned char ** ptr = (unsigned char **) malloc(sizeof(unsigned char *)*row);
+	//memset(ptr, 0, sizeof(sizeof(unsigned char *)*row)); 
+	int size = sizeof(unsigned char)*col;
 	for(int i = 0; i < row; i++)
 	{
-		ptr[i] = (unsigned char *) malloc(sizeof(unsigned char)*col);
+		ptr[i] = (unsigned char *) malloc(size);
 		//memset(ptr[i], 0, sizeof(unsigned char)*col); 
 	}
 	return ptr;

@@ -85,9 +85,9 @@ void map_scroll_up(void);
 
 //---------------------[referenced from gamedo.c]--------------------//
 void sb_drawtile(int x, int y, unsigned int t);
-void drawsprite2x_mask(int xoff, int yoff, unsigned int snum, uchar mask[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]);
+void drawsprite2x_mask(int xoff, int yoff, unsigned int snum, uchar **mask);//[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]);
 void drawghostsprite2x(int xoff, int yoff, unsigned int snum);
-void drawsprite1x_mask(int xoff, int yoff, unsigned int snum, uchar mask[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]);
+void drawsprite1x_mask(int xoff, int yoff, unsigned int snum, uchar **mask);//[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]);
 void drawsprite(int x, int y, unsigned int snum);
 int GetBitmapNumberFromName(char *bmname);
 void DrawBitmap(int xa, int ya, int b);

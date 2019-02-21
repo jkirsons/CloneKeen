@@ -10,8 +10,8 @@ void drawcharacter_clear_erasebg(int xoff, int yoff, int f);
 void drawcharacter(int xoff, int yoff, int f);
 void sb_drawcharacter(int x, int y, int f);
 //--------------------[referenced from ../macros.h]------------------//
-void drawsprite1x_mask(int xoff, int yoff, unsigned int snum, uchar mask[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]);
-void drawsprite2x_mask(int xoff, int yoff, unsigned int snum, uchar mask[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]);
+void drawsprite1x_mask(int xoff, int yoff, unsigned int snum, uchar **mask);//[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]);
+void drawsprite2x_mask(int xoff, int yoff, unsigned int snum, uchar **mask);//[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]);
 
 
 /* located in ../ai/icebit.c */

@@ -79,8 +79,10 @@ int x,y,startx,starty,endx,endy;
 	for(y=starty;y<endy;y++)
 	 for(x=startx;x<endx;x++)
 	 {
-       if (mask[y][x])
-	     setpixel(x+xoff,y+yoff,sprites[snum].imgdata[y][x]);
+       if (mask[y][x] != 0) 
+			 {
+	     	setpixel(x+xoff,y+yoff,sprites[snum].imgdata[y][x]);
+			 }
 	 }
 
 }

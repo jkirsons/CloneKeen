@@ -4,6 +4,6 @@
 /* located in graphics.c */
 
 //---------------------[referenced from macros.h]--------------------//
-void drawsprite1x_mask(int xoff, int yoff, unsigned int snum, uchar mask[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]);
-void drawsprite2x_mask(int xoff, int yoff, unsigned int snum, uchar mask[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]);
+void drawsprite1x_mask(int xoff, int yoff, unsigned int snum, uchar **mask);//[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]);
+void drawsprite2x_mask(int xoff, int yoff, unsigned int snum, uchar **mask);//[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH]);
 
