@@ -382,8 +382,7 @@ char latch_loadsprites(int episode)
 FILE *spritfile;
 unsigned long plane1, plane2, plane3, plane4, plane5;
 char fname[80];
-int x,y,s,p;
-unsigned char c;
+int x,y,s,p, c;
 unsigned long RawDataSize;
 
     sprintf(fname, "data/EGASPRIT.CK%c", episode + '0');

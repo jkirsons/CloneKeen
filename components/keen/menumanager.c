@@ -426,6 +426,7 @@ static int twirly_move_timer=0;
 		twirly_move_timer = 999;
 		if (KeyDrv_KeyIsDown(SDLK_DOWN))
 		{
+//			printf("down\n");
 			if (menu.lastkeydir != KDOWN && !menu.cantmove)
 			{
 				move_down();
@@ -434,6 +435,7 @@ static int twirly_move_timer=0;
 		}
 		else if (KeyDrv_KeyIsDown(SDLK_UP))
 		{
+//			printf("up\n");
 			if (menu.lastkeydir != KUP && !menu.cantmove)
 			{
 				move_up();

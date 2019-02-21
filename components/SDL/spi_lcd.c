@@ -317,7 +317,7 @@ SemaphoreHandle_t dispSem = NULL;
 SemaphoreHandle_t dispDoneSem = NULL;
 
 #define NO_SIM_TRANS 5 //Amount of SPI transfers to queue in parallel
-#define MEM_PER_TRANS 320*8 //in 16-bit words
+#define MEM_PER_TRANS 320*6 //in 16-bit words
 
 int16_t lcdpal[256];
 
@@ -492,7 +492,7 @@ void spi_lcd_init() {
     //dispDoneSem=xSemaphoreCreateBinary();
 #ifdef DOUBLE_BUFFER
     screen_boarder = 0;
-    currFbPtr=heap_caps_malloc(320*240*(lcd_bpp/8), MALLOC_CAP_32BIT);
+    currFbPtr=heap_caps_malloc(320*240*(lcd_bpp/8), MALLOC_CAP_SPIRAM);
     memset(currFbPtr,0,(320*240)*(lcd_bpp/8));
 #endif
 #if CONFIG_FREERTOS_UNICORE

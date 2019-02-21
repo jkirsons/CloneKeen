@@ -253,6 +253,8 @@ char KeyDrv_Start(void)
 	memset(keytable, 0, sizeof(keytable));
 	memset(last_keytable, 1, sizeof(last_keytable));
 	memset(sdl_keysdown, 0, sizeof(sdl_keysdown));
+	for(int i = 0; i < SDLK_LAST; i++)
+		sdl_keysdown[i] = 0;
 	setting_keymap_ktindex = 0;
 	
 	return 0;
@@ -306,7 +308,7 @@ prockey: ;
 				{
 					keytable[keymappings[event.key.keysym.sym]] = newState;
 				}
-				
+				printf("Key: %d  %d\n", event.key.keysym.sym, newState);
 				sdl_keysdown[event.key.keysym.sym] = newState;				
 				break;
 			
