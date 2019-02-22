@@ -54,6 +54,7 @@ unsigned char line[512];
 		{
 			lprintf("BufferIni: Out of Memory!\n");
 			Ini_FreeBuffer();
+			__fclose(fp);
 			return 1;
 		}
 		strcpy(linebuf[nIniLines], line);
@@ -62,6 +63,7 @@ unsigned char line[512];
 		if (nIniLines > MAXLINES)
 		{
 			lprintf("BufferIni: too many lines in file %s (maximum %d)\n", filename, MAXLINES);
+			__fclose(fp);
 			return 1;
 		}
 	}

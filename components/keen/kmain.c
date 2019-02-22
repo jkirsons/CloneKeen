@@ -315,7 +315,11 @@ int dmoversion;
 		goto demoHeaderCorrupt;
 	}
 	
-	if (Load_Episode(__fgetc(fp))) return 1;
+	if (Load_Episode(__fgetc(fp))) 
+	{
+		__fclose(fp);
+		return 1;
+	}
 	levelcontrol.curlevel = __fgetc(fp);
 	
 	for(i=0;i<NUM_OPTIONS;i++) demo.options[i] = __fgetc(fp) ? 1:0;

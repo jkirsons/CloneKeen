@@ -119,6 +119,7 @@ int i,j,k;
 	if (!SpriteTable)
 	{
 		lprintf("latch_loadheader(): Can't allocate sprite table!\n");
+		__fclose(headfile);
 		return 1;
 	}
 
@@ -155,6 +156,7 @@ int i,j,k;
 	if (!BitmapTable)
 	{
 		lprintf("latch_loadheader(): Can't allocate bitmap table!\n");
+		__fclose(headfile);
 		return 1;
 	}
 
@@ -218,11 +220,15 @@ unsigned long RawDataSize;
     // get the data out of the file into memory, decompressing if necessary.
     if (LatchHeader.Compressed)
     {
-		int ok;
-		lprintf("latch_loadlatch(): Decompressing...\n");
-		__fseek(latchfile, 6, SEEK_SET);
-		ok = lz_decompress(latchfile, RawData);
-		if (ok) { lprintf("lzd returns %d\n", ok); return 1; }
+			int ok;
+			lprintf("latch_loadlatch(): Decompressing...\n");
+			__fseek(latchfile, 6, SEEK_SET);
+			ok = lz_decompress(latchfile, RawData);
+			if (ok) { 
+				lprintf("lzd returns %d\n", ok); 
+				__fclose(latchfile);
+				return 1; 
+			}
 		//if (lz_decompress(latchfile, RawData)) return 1;
     }
     else
@@ -391,6 +397,7 @@ unsigned long RawDataSize;
 	if (!spritfile)
 	{
 		lprintf("latch_loadsprites(): Unable to open '%s'!\n", fname);
+		__fclose(spritfile);
 		return 1;
     }
 
@@ -399,14 +406,18 @@ unsigned long RawDataSize;
     if (!RawData)
     {
 		lprintf("latch_loadlatch(): Unable to allocate RawData buffer!\n");
+		__fclose(spritfile);
 		return 1;
     }
 
     if (LatchHeader.Compressed)
     {
-		lprintf("latch_loadsprites(): Decompressing...\n");
-		__fseek(spritfile, 6, SEEK_SET);
-		if (lz_decompress(spritfile, RawData)) return 1;
+			lprintf("latch_loadsprites(): Decompressing...\n");
+			__fseek(spritfile, 6, SEEK_SET);
+			if (lz_decompress(spritfile, RawData)) {
+				__fclose(spritfile);
+				return 1;
+			}
     }
     else
     {

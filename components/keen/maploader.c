@@ -125,6 +125,7 @@ unsigned long special_offs;
 	if (!fp)
 	{
 		crash("loadmap(): %s: file not found\n", filename);
+		__fclose(fp);
 		return 1;
 	}
 	
@@ -134,6 +135,7 @@ unsigned long special_offs;
 	{
 		lprintf(">>> This map says it's 0 bytes long...\n"
 				">>> it was probably created by a broken map editor\n");
+		__fclose(fp);
 		return 1;
 	}
 	
@@ -141,12 +143,14 @@ unsigned long special_offs;
 	if (!data)
 	{
 		lprintf("loadmap: unable to allocate %d bytes.\n", maplen);
+		__fclose(fp);
 		return 1;
 	}
 	
 	if (rle_decompress(fp, data, maplen))
 	{
 		lprintf("loadmap: RLE decompression error.\n");
+		__fclose(fp);
 		return 1;
 	}
 	
@@ -155,6 +159,7 @@ unsigned long special_offs;
 	if (data[2] != 2)
 	{
 		lprintf("loadmap(): incorrect number of planes (loader only supports 2)\n");
+		__fclose(fp);
 		return 1;
 	}
 	
@@ -162,6 +167,7 @@ unsigned long special_offs;
 	if (map.xsize > MAP_MAXWIDTH || map.ysize >= MAP_MAXHEIGHT)
 	{
 		crash("loadmap(): level %s is too big (max width %dx%d)\n", filename, MAP_MAXWIDTH, MAP_MAXHEIGHT);
+		__fclose(fp);
 		return 1;
 	}
 	
@@ -170,6 +176,7 @@ unsigned long special_offs;
 	if (plane_size & 1)
 	{
 		crash("loadmap(): plane size is not even!\n");
+		__fclose(fp);
 		return 1;
 	}
 	
@@ -245,6 +252,7 @@ unsigned long special_offs;
 		if (parse_special_region(&data[special_offs]))
 		{
 			lprintf("loadmap(): error parsing special region\n");
+			__fclose(fp);
 			return 1;
 		}
 	}
@@ -259,6 +267,7 @@ unsigned long special_offs;
 	
 	lprintf("loadmap(): success!\n");
 	free(data);
+	__fclose(fp);
 	
 	return 0;
 }

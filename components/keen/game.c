@@ -104,7 +104,7 @@ int logiciter;
 			lprintf("Leaving game loop\n");
 			break;
 		}
-		
+
 	} while(!crashflag);
 	
 	lprintf("leaving gameloop with retval %d...\n", gl_retval);

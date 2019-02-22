@@ -308,7 +308,7 @@ prockey: ;
 				{
 					keytable[keymappings[event.key.keysym.sym]] = newState;
 				}
-				printf("Key: %d  %d\n", event.key.keysym.sym, newState);
+				//printf("Key: %d  %d\n", event.key.keysym.sym, newState);
 				sdl_keysdown[event.key.keysym.sym] = newState;				
 				break;
 			

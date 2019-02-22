@@ -1,4 +1,5 @@
 #include "SDL_event.h"
+#include "SDL_audio.h"
 #define NELEMS(x)  (sizeof(x) / sizeof((x)[0]))
 
 typedef struct {
@@ -9,6 +10,8 @@ typedef struct {
 
 int keyMode = 1;
 int weaponToggle = 1;
+int volumeToggle = 1;
+
 
 //Mappings from buttons to keys
 #ifdef CONFIG_HW_ODROID_GO
@@ -157,10 +160,11 @@ int readOdroidXY(SDL_Event * event)
     for(int i = 0; i < 6; i++)
         if(checkPinStruct(i, &lastState.buttons[i], event))
         {
-            // cycle weapons
-/*            if(keyMode == 0 && event->key.keysym.sym == SDLK_RETURN)
+            // volume
+            if(event->key.keysym.sym == SDLK_CAPSLOCK)
             {
-                switch(weaponToggle)
+                /*
+                switch(volumeToggle)
                 {
                     case 1:
                         event->key.keysym.scancode = SDL_SCANCODE_1;
@@ -179,16 +183,19 @@ int readOdroidXY(SDL_Event * event)
                         event->key.keysym.sym = SDLK_4;      
                         break;                                                                  
                 }
-                
+                */
                 if(event->key.type == SDL_KEYUP)
                 {
-                    printf("cycle weapon %d, %d\n", weaponToggle, event->key.keysym.sym);
-                    weaponToggle++;
-                    if(weaponToggle > 4)
-                        weaponToggle = 1;
+                    
+                    volumeToggle++;
+                    if(volumeToggle > 4)
+                        volumeToggle = 0;
+                        
+                    global_volume = volumeLevel[volumeToggle];    
+                    printf("cycle volume %d, volume: %d\n", volumeToggle, global_volume);
                 }
             }
-*/
+
             return 1;
         }
 

@@ -99,9 +99,22 @@ IRAM_ATTR void SDL_MixAudio (Uint8 *dst, const Uint8 *src, Uint32 len, int volum
 	}
 	/* Mix the user-level audio format */
 	/* HACK HACK HACK */
-	format = AUDIO_S16;
+	format = AUDIO_U8;//AUDIO_S16;
 
 	switch (format) {
+
+		case AUDIO_U8: {
+			Uint8 src_sample;
+
+			while ( len-- ) {
+				src_sample = *src;
+				ADJUST_VOLUME_U8(src_sample, volume);
+				*dst = mix8[*dst+src_sample];
+				++dst;
+				++src;
+			}
+		}
+		break;
 
 		case AUDIO_S16LSB: {
 			Sint16 src1, src2;

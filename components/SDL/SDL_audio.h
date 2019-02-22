@@ -11,8 +11,8 @@
 //#include "SDL_mixer.h"
 
 // Needed for calling the actual sound output.
-#define SAMPLECOUNT		256
-#define SAMPLERATE		7042 * 1	// Hz
+#define SAMPLECOUNT		512
+#define SAMPLERATE		44100 //7042 * 1	// Hz
 #define SAMPLESIZE		2   	// 16bit
 
 /** A structure to hold a set of audio conversion filters and buffers */
@@ -187,4 +187,7 @@ typedef Uint16 SDL_AudioFormat;
 typedef Uint32 SDL_AudioDeviceID;
 #define SDL_MIX_MAXVOLUME 128
 
+extern char global_volume;
+extern char volumeLevel[];
+	
 #endif

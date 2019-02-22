@@ -8,7 +8,8 @@ bool paused = true;
 bool locked = false;
 xSemaphoreHandle xSemaphoreAudio = NULL;
 
-char global_volume = 20;
+char global_volume;
+char volumeLevel[]  = {0, 15, 45, 75, 100};
 
 IRAM_ATTR void audioToOdroidGoFormat(unsigned char * buf, unsigned char * out_buf, int len)
 {
@@ -21,10 +22,11 @@ IRAM_ATTR void audioToOdroidGoFormat(unsigned char * buf, unsigned char * out_bu
 
 	if(buf != NULL && len > 0)
 		//for(int i = len-2; i >= 0; i-=2)
-		for(int i = 0; i < (len / 2); i += 1)  
+		for(int i = len/2; i >= 0; i --)  
 		{
-			Sint16 range = *sbuf * global_volume / 100 >> 8 ; 
-			sbuf += as.channels;
+			Sint16 range = ((buf[i]-127)) * global_volume / 100;// >> 8 ; 
+			//sbuf += as.channels;
+			// range = -128 <--> 128
 
 			// Convert to differential output
 			if (range > 127)
@@ -60,16 +62,16 @@ IRAM_ATTR void updateTask(void *arg)
   while(1)
   {
 	  if(!paused){
-		  vTaskDelay( 50 );
-		  //memset(out_buffer, 0, SAMPLECOUNT*SAMPLESIZE*2);
-		  //memset(sdl_buffer, 0, SAMPLECOUNT*SAMPLESIZE);
+		  //vTaskDelay( 50 );
+		  memset(out_buffer, 0, SAMPLECOUNT*SAMPLESIZE*2);
+		  memset(sdl_buffer, 0, SAMPLECOUNT*SAMPLESIZE);
 		  
-		  //SDL_LockAudio();
-		  //(*as.callback)(NULL, sdl_buffer, SAMPLECOUNT*SAMPLESIZE);
-		  //SDL_UnlockAudio();
+		  SDL_LockAudio();
+		  (*as.callback)(NULL, sdl_buffer, SAMPLECOUNT*SAMPLESIZE);
+		  SDL_UnlockAudio();
 
-		  //audioToOdroidGoFormat(sdl_buffer, out_buffer, SAMPLECOUNT*SAMPLESIZE);
-		  //ESP_ERROR_CHECK(i2s_write(I2S_NUM_0, out_buffer, SAMPLECOUNT*SAMPLESIZE*2, &bytesWritten, 500 / portTICK_PERIOD_MS /*portMAX_DELAY*/ ));
+		  audioToOdroidGoFormat(sdl_buffer, out_buffer, SAMPLECOUNT*SAMPLESIZE);
+		  ESP_ERROR_CHECK(i2s_write(I2S_NUM_0, out_buffer, SAMPLECOUNT*SAMPLESIZE*2, &bytesWritten, 500 / portTICK_PERIOD_MS /*portMAX_DELAY*/ ));
 		  
 	  } else {
 		  vTaskDelay( 5 );
@@ -81,6 +83,7 @@ IRAM_ATTR void updateTask(void *arg)
 
 void SDL_AudioInit()
 {
+	global_volume = volumeLevel[1];
 	sdl_buffer = heap_caps_malloc(SAMPLECOUNT * SAMPLESIZE, MALLOC_CAP_8BIT);
 	out_buffer = heap_caps_malloc(SAMPLECOUNT * SAMPLESIZE * 2, MALLOC_CAP_8BIT);
 	static const i2s_config_t i2s_config = {
@@ -114,6 +117,7 @@ int SDL_OpenAudio(SDL_AudioSpec *desired, SDL_AudioSpec *obtained)
 	obtained->channels = desired->channels;
 	obtained->samples = SAMPLECOUNT * SAMPLESIZE;
 	obtained->callback = desired->callback;
+	obtained->size = SAMPLECOUNT*SAMPLESIZE;
 	memcpy(&as,obtained,sizeof(SDL_AudioSpec));  
 
 	xTaskCreatePinnedToCore(&updateTask, "updateTask", 5000, NULL, 2, NULL, tskNO_AFFINITY); //tskNO_AFFINITY

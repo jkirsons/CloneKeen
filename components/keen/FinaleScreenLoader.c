@@ -107,6 +107,7 @@ int x,y,by;
 		cmdbyte = __fgetc(fp);
 		if (cmdbyte<0)
 		{  // EOF
+		  __fclose(fp);
 			return;
 		}
 		
