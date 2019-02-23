@@ -1,4 +1,4 @@
-# ODROID-GO port of ColneKeen
+# ODROID-GO port of CloneKeen
 
 Installation instructions are in the /release folder.
 
