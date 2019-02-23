@@ -186,7 +186,7 @@ void update_path(const char *path)
 {
 	if(path[0] != '/')
 	{
-		strcpy(new_path, "/sd/data/keen/bin/");
+		strcpy(new_path, "/sd/data/keen/");
 		strcat(new_path, path);
 		//sprintf(new_path, "/sd/data/keen/bin/%s", path);
 	} else {

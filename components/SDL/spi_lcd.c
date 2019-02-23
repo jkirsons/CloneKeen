@@ -154,7 +154,7 @@ void ili_data(spi_device_handle_t spi, const uint8_t *data, int len)
 
 //This function is called (in irq context!) just before a transmission starts. It will
 //set the D/C line to the value indicated in the user field.
-void ili_spi_pre_transfer_callback(spi_transaction_t *t)
+void IRAM_ATTR ili_spi_pre_transfer_callback(spi_transaction_t *t)
 {
     int dc=(int)t->user;
     gpio_set_level(PIN_NUM_DC, dc);
@@ -306,6 +306,39 @@ void IRAM_ATTR send_header_cleanup(spi_device_handle_t spi)
     }
 }
 
+static void IRAM_ATTR send_header_start_min(spi_device_handle_t spi)
+{
+    esp_err_t ret;
+    int x = 0;
+    //Transaction descriptors. Declared static so they're not allocated on the stack; we need this memory even when this
+    //function is finished because the SPI driver needs access to it even while we're already calculating the next line.
+    static spi_transaction_t trans[1];
+
+    //In theory, it's better to initialize trans and data only once and hang on to the initialized
+    //variables. We allocate them on the stack, so we need to re-init them each call.
+
+    memset(&trans[x], 0, sizeof(spi_transaction_t));
+    if ((x&1)==0) {
+        //Even transfers are commands
+        trans[x].length=8;
+        trans[x].user=(void*)0;
+    } else {
+        //Odd transfers are data
+        trans[x].length=8*4;
+        trans[x].user=(void*)1;
+    }
+    trans[x].flags=SPI_TRANS_USE_TXDATA;
+
+    trans[0].tx_data[0]=0x3C;           //memory write
+
+    ret=spi_device_queue_trans(spi, &trans[x], portMAX_DELAY);
+    assert(ret==ESP_OK);
+
+    //When we are here, the SPI driver is busy (in the background) getting the transactions sent. That happens
+    //mostly using DMA, so the CPU doesn't have much to do here. We're not going to wait for the transaction to
+    //finish because we may as well spend the time calculating the next line. When that is done, we can call
+    //send_line_finish, which will wait for the transfers to be done and check their status.
+}
 
 #ifndef DOUBLE_BUFFER
 volatile static uint16_t *currFbPtr=NULL;
@@ -317,9 +350,10 @@ SemaphoreHandle_t dispSem = NULL;
 SemaphoreHandle_t dispDoneSem = NULL;
 
 #define NO_SIM_TRANS 5 //Amount of SPI transfers to queue in parallel
-#define MEM_PER_TRANS 320*6 //in 16-bit words
+#define MEM_PER_TRANS 320*40 //in 16-bit words
 
 int16_t lcdpal[256];
+bool firstRun = true;
 
 void IRAM_ATTR displayTask(void *arg) {
 	int x, i;
@@ -340,6 +374,7 @@ void IRAM_ATTR displayTask(void *arg) {
     };
     spi_device_interface_config_t devcfg={
         .clock_speed_hz=40000000,               //Clock out at 26 MHz. Yes, that's heavily overclocked.
+        //.clock_speed_hz=26000000, 
         .mode=0,                                //SPI mode 0
         .spics_io_num=PIN_NUM_CS,               //CS pin
         .queue_size=NO_SIM_TRANS,               //We want to be able to queue this many transfers
@@ -381,8 +416,14 @@ void IRAM_ATTR displayTask(void *arg) {
 		uint8_t *myData=(uint8_t*)currFbPtr;
 #endif
         SDL_LockDisplay();
-		send_header_start(spi, 0, screen_boarder, 320, 240-screen_boarder*2);
-		send_header_cleanup(spi);
+		if(firstRun)
+        {
+            send_header_start(spi, 0, screen_boarder, 320, 240-screen_boarder*2);
+            send_header_cleanup(spi);
+            firstRun = false;
+        } else {
+            send_header_start_min(spi);
+        }
         
 		for (x=0; x<320*(240-screen_boarder*2); x+=MEM_PER_TRANS) {
 #ifdef DOUBLE_BUFFER
@@ -436,6 +477,7 @@ void IRAM_ATTR displayTask(void *arg) {
 			assert(ret==ESP_OK);
 			inProgress--;
 		}
+        firstRun = true;
         SDL_UnlockDisplay();
         taskYIELD();
 	}
