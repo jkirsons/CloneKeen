@@ -11,20 +11,20 @@
 8. Flash the Keen firmware. 
 
 
->Example SD card files:
->/odroid/firmware/Keen.fw
->/data/keen/keen.conf
->/data/keen/palette.ini
->/data/keen/strings.dat
->/data/keen/...
->/data/keen/data/CTLPANEL.CK1
->/data/keen/data/CTLPANEL.CK2
->/data/keen/data/CTLPANEL.CK3
->/data/keen/data/...
->/data/keen/gfx/100.tga
->/data/keen/gfx/200.tga
->/data/keen/gfx/500.tga
->/data/keen/gfx/...
+Example SD card files:
+* /odroid/firmware/Keen.fw
+* /data/keen/keen.conf
+* /data/keen/palette.ini
+* /data/keen/strings.dat
+* /data/keen/...
+* /data/keen/data/CTLPANEL.CK1
+* /data/keen/data/CTLPANEL.CK2
+* /data/keen/data/CTLPANEL.CK3
+* /data/keen/data/...
+* /data/keen/gfx/100.tga
+* /data/keen/gfx/200.tga
+* /data/keen/gfx/500.tga
+* /data/keen/gfx/...
 
 ## Troubleshooting
 
